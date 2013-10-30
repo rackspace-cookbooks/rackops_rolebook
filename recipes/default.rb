@@ -13,6 +13,8 @@ include_recipe "motd"
 
 node.override['authorization']['sudo']['users'] = ["rack"]
 node.override['authorization']['sudo']['passwordless'] = "true"
+node.override['authorization']['sudo']['include_sudoers_d'] = true
+
 include_recipe "sudo"
 
 include_recipe "chef-client"
@@ -20,14 +22,31 @@ include_recipe "chef-client::delete_validation"
 
 include_recipe "ntp"
 
-package "sysstat" do
-	action :install
+admin_packages = [
+  "sysstat",
+  "dstat",
+]
+
+case node['platform_family']
+
+when "debian"
+  admin_packages.push("vim")
+
+when "rhel"
+  admin_packages.push("vim-minimal")
+
 end
 
-package "dstat" do
-	action :install
+admin_packages.each do | admin_package |
+  package admin_package do
+    action :install
+  end
 end
 
-package "htop" do
-	action :install
+#Set the default editor based on attribute
+file "/etc/profile.d/editor.sh" do
+  owner "root"
+  group "root"
+  mode "755"
+  content %{export EDITOR="#{node['editor']['default']}"}
 end
