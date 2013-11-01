@@ -25,6 +25,8 @@ include_recipe "ntp"
 admin_packages = [
   "sysstat",
   "dstat",
+  "screen",
+  "curl"
 ]
 
 case node['platform_family']
