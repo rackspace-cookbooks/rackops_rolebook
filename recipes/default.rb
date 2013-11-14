@@ -11,11 +11,11 @@ include_recipe "rackspace-user"
 
 include_recipe "motd"
 
-node.override['authorization']['sudo']['users'] = ["rack"]
-node.override['authorization']['sudo']['passwordless'] = "true"
-node.override['authorization']['sudo']['include_sudoers_d'] = true
-
-include_recipe "sudo"
+# Including sudoers.d is done in recipe[rackspace-user]
+sudo "rack" do
+  user "rack"
+  nopasswd true
+end
 
 include_recipe "chef-client"
 include_recipe "chef-client::delete_validation"
