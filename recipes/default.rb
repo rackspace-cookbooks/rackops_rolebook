@@ -8,7 +8,6 @@
 #
 
 include_recipe "rackspace-user"
-
 include_recipe "motd"
 
 # Including sudoers.d is done in recipe[rackspace-user]
@@ -20,25 +19,25 @@ end
 include_recipe "chef-client"
 include_recipe "chef-client::delete_validation"
 include_recipe "chef-client::config"
-
-
 include_recipe "ntp"
 
 admin_packages = [
   "sysstat",
   "dstat",
   "screen",
-  "curl"
+  "curl",
+  "telnet",
+  "htop",
+  "traceroute",
+  "mtr",
+  "zip"
 ]
 
 case node['platform_family']
-
 when "debian"
   admin_packages.push("vim")
-
 when "rhel"
   admin_packages.push("vim-minimal")
-
 end
 
 admin_packages.each do | admin_package |
