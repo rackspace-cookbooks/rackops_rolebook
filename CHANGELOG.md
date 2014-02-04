@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops-rolebook.
 
+## 0.2.0:
+* start convert over to rackspace cookbooks
+
 ## 0.1.0:
 
 * Initial release of rackops-rolebook

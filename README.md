@@ -5,10 +5,10 @@ This "rolebook" is a replacement for a traditional role. It includes recipes lik
 Requirements
 ------------
 depends "rackspace-user"
-depends "motd"
+depends "rackspace_motd"
 depends "sudo"
 depends "chef-client"
-depends "ntp"
+depends "rackspace_ntp"
 
 Usage
 -----

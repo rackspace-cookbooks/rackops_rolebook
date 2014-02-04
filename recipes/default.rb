@@ -8,7 +8,7 @@
 #
 
 include_recipe "rackspace-user"
-include_recipe "motd"
+include_recipe "rackspace_motd"
 
 # Including sudoers.d is done in recipe[rackspace-user]
 sudo "rack" do
@@ -19,7 +19,7 @@ end
 include_recipe "chef-client"
 include_recipe "chef-client::delete_validation"
 include_recipe "chef-client::config"
-include_recipe "ntp"
+include_recipe "rackspace_ntp"
 
 admin_packages = [
   "sysstat",
