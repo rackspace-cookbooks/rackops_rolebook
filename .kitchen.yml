@@ -1,27 +1,35 @@
 ---
 driver_plugin: vagrant
 driver_config:
-  require_chef_omnibus: true
+  require_chef_omnibus: latest
 
 platforms:
 - name: ubuntu-12.04
   driver_config:
     box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-- name: ubuntu-10.04
-  driver_config:
-    box: opscode-ubuntu-10.04
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_provisionerless.box
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
+  run_list:
+  - recipe[rackspace_apt]
 - name: centos-6.4
   driver_config:
     box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-- name: centos-5.9
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.4_chef-provisionerless.box
+- name: debian-7.2.0
   driver_config:
-    box: opscode-centos-5.9
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-5.9_provisionerless.box
+    box: opscode-debian-7.2.0
+    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
+  run_list:
+  - recipe[rackspace_apt]
 
 suites:
 - name: default
-  run_list: ["recipe[rackops-rolebook]"]
-  attributes: {}
+  run_list:
+  - recipe[rackops-rolebook]
+  attributes:
+    rackspace_iptables:
+      config:
+        chains:
+          INPUT: 
+            '-s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT':
+              weight: 1000
+              comment: 'vagrant ssh'
