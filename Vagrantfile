@@ -73,8 +73,6 @@ Vagrant.configure("2") do |config|
   # config.berkshelf.except = []
 
   config.vm.provision :chef_solo do |chef|
-    }
-
     chef.run_list = [
         "recipe[rackspace_apt]",
         "recipe[rackops-rolebook::default]"
