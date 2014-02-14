@@ -47,7 +47,6 @@ admin_packages = %W[
   zip
 ]
 
-
 case node['platform_family']
 when 'debian'
   admin_packages.push('vim')
