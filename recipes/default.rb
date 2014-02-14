@@ -17,9 +17,9 @@ if node['rackops-rolebook']['include_acl'] == true
   critical_recipes.push('rackops-rolebook::acl')
 end
 
-# Only include chef-client if a chef server url is specified.
+# Only include chef-client in client mode.
 # This should allow for testing via solo
-if Chef::Config[:chef_server_url]
+unless Chef::Config[:solo] == true
   critical_recipes.push('chef-client')
   critical_recipes.push('chef-client::delete_validation')
   critical_recipes.push('chef-client::config')
