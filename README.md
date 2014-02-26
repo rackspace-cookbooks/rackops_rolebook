@@ -19,6 +19,7 @@ Attributes
 Recipes
 -------
 `default.rb` - This recipe includes all the recipes from the required core cookbooks. It will include chef-client recipes if we are *not* running in chef_solo mode. It adds the `rack` user to the sudo group and installs a bunch of handy applications.
+`acl.rb` - This recipe will the standard rackspace IPtables allows.
 
 Usage
 -----

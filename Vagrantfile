@@ -72,10 +72,12 @@ Vagrant.configure("2") do |config|
   # to skip installing and copying to Vagrant's shelf.
   # config.berkshelf.except = []
 
-  config.vm.provision :chef_solo do |chef|
-    chef.run_list = [
-        "recipe[rackspace_apt]",
-        "recipe[rackops_rolebook::default]"
-    ]
+  config.vm.provision :chef_solo do |chef|{
+  }
+
+  chef.run_list = [
+      "recipe[rackspace_apt]",
+      "recipe[rackops_rolebook::default]"
+  ]
   end
 end

@@ -8,7 +8,7 @@
 #
 
 critical_recipes = %W[
-  rackspace_user
+  rackspace_user::rack_user
   rackspace_motd
   rackspace_ntp
 ]
@@ -30,7 +30,7 @@ critical_recipes.each do | recipe |
   include_recipe recipe
 end
 
-# Including sudoers.d is done in recipe[rackspace_user]
+node.default['rackspace_sudo']['config']['authorization']['sudo']['include_sudoers_d'] = true
 rackspace_sudo 'rack' do
   user 'rack'
   nopasswd true
