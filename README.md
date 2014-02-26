@@ -1,20 +1,20 @@
-rackops-rolebook Cookbook
+rackops\_rolebook Cookbook
 =========================
 This "rolebook" is a replacement for a traditional base role. It includes recipes like a role but is structured like a cookbook.
 
 Requirements
 ------------
-depends "rackspace-user"
-depends "rackspace_motd"
-depends "sudo"
 depends "chef-client"
-depends "rackspace_ntp"
-depends "rackspace_iptables"
+depends "rackspace\_user"
+depends "rackspace\_motd"
+depends "rackspace\_sudo"
+depends "rackspace\_ntp"
+depends "rackspace\_iptables"
 
 Attributes
 -----------
-`default['rackops-rolebook']['editor']['default']` - sets the default editor for the entire machine via /etc/profile.d. Defaults to `vim`
-`default['rackops-rolebook']['include_acl']` - Whether or not to include the standard Rackspace iptables ACLs for access. Default to `true`
+`default['rackops\_rolebook']['editor']['default']` - sets the default editor for the entire machine via /etc/profile.d. Defaults to `vim`
+`default['rackops\_rolebook']['include_acl']` - Whether or not to include the standard Rackspace iptables ACLs for access. Default to `true`
 
 Recipes
 -------
@@ -22,19 +22,20 @@ Recipes
 
 Usage
 -----
-#### rackops-rolebook::default
+#### rackops\_rolebook::default
 e.g.
-Just include `rackops-rolebook` in your node's `run_list`:
+Just include `rackops_rolebook` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[rackops-rolebook]"
+    "recipe[rackops_rolebook]"
   ]
 }
 ```
 
 License and Authors
 -------------------
-Authors: ryan.richard@rackspace.com
+Author: ryan.richard@rackspace.com
+Author: matt.thode@rackspace.com

@@ -24,7 +24,7 @@ platforms:
 suites:
 - name: default
   run_list:
-  - recipe[rackops-rolebook]
+  - recipe[rackops_rolebook]
   attributes:
     rackspace_iptables:
       config:

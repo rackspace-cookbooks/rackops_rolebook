@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.hostname = "rackops-rolebook-berkshelf"
+  config.vm.hostname = "rackops_rolebook-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "opscode-ubuntu-12.04"
@@ -75,7 +75,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :chef_solo do |chef|
     chef.run_list = [
         "recipe[rackspace_apt]",
-        "recipe[rackops-rolebook::default]"
+        "recipe[rackops_rolebook::default]"
     ]
   end
 end

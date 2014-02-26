@@ -2,7 +2,7 @@ name             'rackops_rolebook'
 maintainer       'Rackspace, US Inc.'
 maintainer_email 'rackspace-cookbooks@rackspace.com'
 license          'All rights reserved'
-description      'Installs/Configures rackops-rolebook'
+description      'Installs/Configures rackops_rolebook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '1.0.0'
 
