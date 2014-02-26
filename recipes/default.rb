@@ -8,7 +8,7 @@
 #
 
 critical_recipes = %W[
-  rackspace-user
+  rackspace_user
   rackspace_motd
   rackspace_ntp
 ]
@@ -31,7 +31,7 @@ critical_recipes.each do | recipe |
 end
 
 # Including sudoers.d is done in recipe[rackspace-user]
-sudo 'rack' do
+rackspace_sudo 'rack' do
   user 'rack'
   nopasswd true
 end
@@ -45,6 +45,8 @@ admin_packages = %W[
   traceroute
   mtr
   zip
+  lsof
+  htop
 ]
 
 case node['platform_family']
