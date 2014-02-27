@@ -46,7 +46,6 @@ admin_packages = %W[
   mtr
   zip
   lsof
-  htop
 ]
 
 case node['platform_family']
