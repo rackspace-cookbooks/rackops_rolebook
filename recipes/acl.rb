@@ -1,6 +1,6 @@
 #
 # Author:: Ryan Richard (ryan.richard@rackspace.com)
-# Cookbook Name:: rackops-rolebook
+# Cookbook Name:: rackops_rolebook
 # Recipe:: acl
 #
 # Copyright 2014, Rackspace US, Inc.

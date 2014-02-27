@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: rackops-rolebook
+# Cookbook Name:: rackops_rolebook
 # Recipe:: default
 #
 # Copyright 2014, Rackspace, US Inc.
@@ -8,13 +8,13 @@
 #
 
 critical_recipes = %W[
-  rackspace-user
+  rackspace_user::rack_user
   rackspace_motd
   rackspace_ntp
 ]
 
-if node['rackops-rolebook']['include_acl'] == true
-  critical_recipes.push('rackops-rolebook::acl')
+if node['rackops_rolebook']['include_acl'] == true
+  critical_recipes.push('rackops_rolebook::acl')
 end
 
 # Only include chef-client in client mode.
@@ -30,8 +30,8 @@ critical_recipes.each do | recipe |
   include_recipe recipe
 end
 
-# Including sudoers.d is done in recipe[rackspace-user]
-sudo 'rack' do
+node.default['rackspace_sudo']['config']['authorization']['sudo']['include_sudoers_d'] = true
+rackspace_sudo 'rack' do
   user 'rack'
   nopasswd true
 end
@@ -45,6 +45,7 @@ admin_packages = %W[
   traceroute
   mtr
   zip
+  lsof
 ]
 
 case node['platform_family']
@@ -66,5 +67,5 @@ file '/etc/profile.d/editor.sh' do
   owner 'root'
   group 'root'
   mode '755'
-  content %{export EDITOR="#{node['rackops-rolebook']['editor']['default']}"}
+  content %{export EDITOR="#{node['rackops_rolebook']['editor']['default']}"}
 end
