@@ -11,6 +11,7 @@ critical_recipes = %W[
   rackspace_user::rack_user
   rackspace_motd
   rackspace_ntp
+  rackspace_logrotate
 ]
 
 if node['rackops_rolebook']['include_acl'] == true
@@ -68,4 +69,11 @@ file '/etc/profile.d/editor.sh' do
   group 'root'
   mode '755'
   content %{export EDITOR="#{node['rackops_rolebook']['editor']['default']}"}
+end
+
+logrotate_app 'chef-client' do
+  path '/var/log/chef/client.log'
+  rotate 12
+  compress
+  postrotate '/etc/init.d/chef-client condrestart >/dev/null || :'
 end
