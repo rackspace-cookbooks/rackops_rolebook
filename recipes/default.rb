@@ -32,6 +32,10 @@ critical_recipes.each do | recipe |
 end
 
 node.default['rackspace_sudo']['config']['authorization']['sudo']['include_sudoers_d'] = true
+
+#needed because chef_client set up logrotate only if this is set to something...
+node.default['chef-client']['log_file'] = '/var/log/chef/client.log'
+
 rackspace_sudo 'rack' do
   user 'rack'
   nopasswd true
@@ -69,11 +73,4 @@ file '/etc/profile.d/editor.sh' do
   group 'root'
   mode '755'
   content %{export EDITOR="#{node['rackops_rolebook']['editor']['default']}"}
-end
-
-logrotate_app 'chef-client' do
-  path '/var/log/chef/client.log'
-  rotate 12
-  compress
-  postrotate '/etc/init.d/chef-client condrestart >/dev/null || :'
 end
