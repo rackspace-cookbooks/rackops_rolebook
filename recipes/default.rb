@@ -7,11 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-critical_recipes = %W[
+critical_recipes = %w(
   rackspace_user::rack_user
   rackspace_motd
   rackspace_ntp
-]
+  rackspace_openssh
+)
 
 if node['rackops_rolebook']['include_acl'] == true
   critical_recipes.push('rackops_rolebook::acl')
