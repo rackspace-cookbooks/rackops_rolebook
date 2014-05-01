@@ -14,7 +14,7 @@ rackspace_cloudmonitoring_entity node['hostname'] do
   agent_id      node['rackspace_cloudmonitoring']['config']['agent']['id']
   search_method 'ip'
   search_ip     node['ipaddress']
-  ip_addresses  node['ipaddress']
+  ip_addresses  ip: node['ipaddress']
 end
 
 rackspace_cloudmonitoring_check 'cpu' do
@@ -42,14 +42,14 @@ node['filesystem'].each do |key, _data|
     rackspace_cloudmonitoring_check "filesystem-#{key}" do
       entity_chef_label node['hostname']
       type              'agent.disk'
-      target            key
+      details            target: key
     end
 
     # Create a filesystem check for if block device mounted
     rackspace_cloudmonitoring_check "filesystem-#{node['filesystem'][key]['mount']}" do
       entity_chef_label node['hostname']
       type              'agent.filesystem'
-      target            node['filesystem'][key]['mount']
+      details            target: node['filesystem'][key]['mount']
       only_if { node['filesystem'][key]['mount'] } # if the block device is mounted
     end
   end
@@ -60,7 +60,7 @@ node['network']['interfaces'].each do |key, data|
   rackspace_cloudmonitoring_check "network-#{key}" do
     entity_chef_label node['hostname']
     type              'agent.network'
-    target            key
+    details           target: key
     only_if { data['type'] == 'eth' }
   end
 end

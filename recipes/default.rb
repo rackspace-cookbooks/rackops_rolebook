@@ -17,7 +17,7 @@ if node['rackops_rolebook']['include_acl'] == true
   critical_recipes.push('rackops_rolebook::acl')
 end
 
-if node['rackspace_cloudmonitoring']['checks_enabled'] == true
+if node['rackspace_cloudmonitoring']['standard_checks']['enabled'] == true
   critical_recipes.push('rackspace_cloudmonitoring')
   critical_recipes.push('rackops_rolebook::monitoring_checks')
   critical_recipes.push('rackspace_cloudmonitoring::monitors')
