@@ -19,7 +19,7 @@ end
 
 if node['rackspace_cloudmonitoring']['checks_enabled'] == true
   critical_recipes.push('rackspace_cloudmonitoring')
-  critical_recipes.push('rackops_rolebook::monitoring-checks')
+  critical_recipes.push('rackops_rolebook::monitoring_checks')
   critical_recipes.push('rackspace_cloudmonitoring::monitors')
 end
 
@@ -73,5 +73,5 @@ file '/etc/profile.d/editor.sh' do
   owner 'root'
   group 'root'
   mode '755'
-  content %{export EDITOR="#{node['rackops_rolebook']['editor']['default']}"}
+  content %(export EDITOR="#{node['rackops_rolebook']['editor']['default']}")
 end

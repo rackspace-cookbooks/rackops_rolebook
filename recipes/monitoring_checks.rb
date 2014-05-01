@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: rackops_rolebook
-# Recipe:: monitoring-checks
+# Recipe:: monitoring_checks
 #
 # Copyright 2014, Rackspace, US Inc.
 #
@@ -14,7 +14,7 @@ rackspace_cloudmonitoring_entity node['hostname'] do
   agent_id      node['rackspace_cloudmonitoring']['config']['agent']['id']
   search_method 'ip'
   search_ip     node['ipaddress']
-  ip_addresses  { default: node['ipaddress'] }
+  ip_addresses  node['ipaddress']
 end
 
 rackspace_cloudmonitoring_check 'cpu' do
@@ -33,10 +33,10 @@ rackspace_cloudmonitoring_check 'load_average' do
 end
 
 # loop through all detected "filesystems"
-node['filesystem'].each do |key,data|
+node['filesystem'].each do |key, _data|
 
   # get block devices that start with "/"
-  if key =~ %r(^/) # regex
+  if key =~ /^\// # regex
 
     # Create disk checks for only these block devices
     rackspace_cloudmonitoring_check "filesystem-#{key}" do
@@ -45,25 +45,22 @@ node['filesystem'].each do |key,data|
       target            key
     end
 
-    # if the block device is mounted
-    if node['filesystem'][key]['mount'] != nil
-
-      # Create a filesystem check for that mount point
-      rackspace_cloudmonitoring_check "filesystem-#{node['filesystem'][key]['mount']}" do
-        entity_chef_label node['hostname']
-        type              'agent.filesystem'
-        target            node['filesystem'][key]['mount']
-      end
+    # Create a filesystem check for if block device mounted
+    rackspace_cloudmonitoring_check "filesystem-#{node['filesystem'][key]['mount']}" do
+      entity_chef_label node['hostname']
+      type              'agent.filesystem'
+      target            node['filesystem'][key]['mount']
+      only_if { node['filesystem'][key]['mount'] } # if the block device is mounted
     end
+  end
 end
 
 # Loop over all network "eth" interfaces and create check
 node['network']['interfaces'].each do |key, data|
-  if v['type'] == 'eth'
-    rackspace_cloudmonitoring_check 'network-name' do
-      entity_chef_label node['hostname']
-      type              'agent.network'
-      target            key
-    end
+  rackspace_cloudmonitoring_check "network-#{key}" do
+    entity_chef_label node['hostname']
+    type              'agent.network'
+    target            key
+    only_if { data['type'] == 'eth' }
   end
 end
