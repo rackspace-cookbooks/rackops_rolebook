@@ -19,8 +19,8 @@ end
 
 if node['rackspace_cloudmonitoring']['checks_enabled'] == true
   critical_recipes.push('rackspace_cloudmonitoring')
-  critical_recipes.push('rackspace_cloudmonitoring::agent')
   critical_recipes.push('rackops_rolebook::monitoring-checks')
+  critical_recipes.push('rackspace_cloudmonitoring::monitors')
 end
 
 # Only include chef-client in client mode.
