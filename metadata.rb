@@ -4,7 +4,7 @@ maintainer_email 'rackspace-cookbooks@rackspace.com'
 license          'All rights reserved'
 description      'Installs/Configures rackops_rolebook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.2.0'
+version          '1.2.1'
 
 depends 'chef-client',        '~> 3.3'
 depends 'rackspace_user',     '~> 1.0'
