@@ -11,6 +11,7 @@ critical_recipes = %w(
   rackspace_user::rack_user
   rackspace_motd
   rackspace_ntp
+  rackops_rolebook::public_info
 )
 
 if node['rackops_rolebook']['include_acl'] == true
