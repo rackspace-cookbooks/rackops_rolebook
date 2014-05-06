@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 1.3.0
+* Add public_info Ohai plugin to populate public_info attributes
+
 ## 1.2.0
 * Add rackspace_cloudmonitoring as a dependency to enable standard checks
 
