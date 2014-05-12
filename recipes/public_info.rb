@@ -9,7 +9,14 @@
 # All rights reserved - Do Not Redistribute
 #
 
+# Load the ohai recipe to populate node['ohai']
 include_recipe 'ohai'
+
+# Fail in a slightly more descriptive manner than the directory block below
+#  if the plugin directory is unset.
+if node['ohai']['plugin_path'].nil?
+  fail 'ERROR: Ohai plugin path not set'
+end
 
 # Ensure the plugin directory exists
 plugin_directory = directory node['ohai']['plugin_path'] do
