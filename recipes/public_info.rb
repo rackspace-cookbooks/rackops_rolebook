@@ -35,7 +35,10 @@ plugin_directory.run_action(:create)
 plugin_install.run_action(:create)
 reload_ohai.run_action(:reload)
 
-# Assign the external_ip tag to the node if node['public_info']['remote_ip'] looks like an IP.
-if node['public_info']['remote_ip'] =~ /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/
-  tag("RemoteIP:#{node['public_info']['remote_ip']}")
+# Stop the run if the IP is invalid, assume failure here is preferable to running with invalid data
+unless node['public_info']['remote_ip'] =~ /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/
+  fail "ERROR: Unable to determine server remote IP. (Got \"#{node['public_info']['remote_ip']}\") Halting to avoid use of bad data."
 end
+  
+# Assign the external_ip tag to the node if node['public_info']['remote_ip'] looks like an IP.
+tag("RemoteIP:#{node['public_info']['remote_ip']}")
