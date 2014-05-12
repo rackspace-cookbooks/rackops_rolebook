@@ -32,3 +32,7 @@ end
 plugin_directory.run_action(:create)
 plugin_install.run_action(:create)
 reload_ohai.run_action(:reload)
+
+# Assign the external_ip tag to the node
+tag("ExternalIP:#{node['public_info']['remote_ip'] }")
+
