@@ -1,4 +1,4 @@
-#available at https://github.com/rackops/public_info
+# available at https://github.com/rackops/public_info
 #
 # Author:: Thomas Cate (thomas.cate@rackspace.com)
 # Copyright:: Copyright (c) 2014 Rackspace, Inc.
@@ -26,8 +26,8 @@ url = 'http://whoami.rackops.org/api'
 begin
   response = RestClient.get(url)
   results = JSON.parse(response)
-  
-  if not results.nil?
+
+  unless results.nil?
     public_info Mash.new
     public_info[:remote_ip] = results['remote_ip']
     public_info[:X_Forwarded] = results['X_Forwarded']
@@ -37,5 +37,5 @@ begin
   end
 
 rescue RestClient::Exception
-  Ohai::Log.debug("Failed to return info from whoami.rackops.org")
+  Ohai::Log.debug('Failed to return info from whoami.rackops.org')
 end
