@@ -9,8 +9,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe 'ohai'
+
 # Ensure the plugin directory exists
-plugin_directory = directory "#{node['ohai']['plugin_path']}" do
+plugin_directory = directory node['ohai']['plugin_path'] do
   owner 'root'
   group 'root'
   mode  '0755'
@@ -33,5 +35,7 @@ plugin_directory.run_action(:create)
 plugin_install.run_action(:create)
 reload_ohai.run_action(:reload)
 
-# Assign the external_ip tag to the node
-tag("RemoteIP:#{node['public_info']['remote_ip'] }")
+# Assign the external_ip tag to the node if node['public_info']['remote_ip'] looks like an IP.
+if node['public_info']['remote_ip'] =~ /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/
+  tag("RemoteIP:#{node['public_info']['remote_ip']}")
+end
