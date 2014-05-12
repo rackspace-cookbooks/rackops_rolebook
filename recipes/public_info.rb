@@ -43,6 +43,8 @@ plugin_install.run_action(:create)
 reload_ohai.run_action(:reload)
 
 # Stop the run if the IP is invalid, assume failure here is preferable to running with invalid data
+# This check is also important for testing: if the plugin fails to load and operate this exception will
+#  halt convergance breaking Kitchen runs.
 unless node['public_info']['remote_ip'] =~ /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/
   fail "ERROR: Unable to determine server remote IP. (Got \"#{node['public_info']['remote_ip']}\") Halting to avoid use of bad data."
 end
