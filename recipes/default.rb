@@ -18,6 +18,12 @@ if node['rackops_rolebook']['include_acl'] == true
   critical_recipes.push('rackops_rolebook::acl')
 end
 
+if node['rackspace_cloudmonitoring']['standard_checks']['enabled'] == true
+  critical_recipes.push('rackspace_cloudmonitoring')
+  critical_recipes.push('rackops_rolebook::monitoring_checks')
+  critical_recipes.push('rackspace_cloudmonitoring::monitors')
+end
+
 # Only include chef-client in client mode.
 # This should allow for testing via solo
 unless Chef::Config[:solo] == true
@@ -32,12 +38,16 @@ critical_recipes.each do | recipe |
 end
 
 node.default['rackspace_sudo']['config']['authorization']['sudo']['include_sudoers_d'] = true
+
+# Needed because chef_client set up logrotate only if this is set to something...
+node.default['chef-client']['log_file'] = '/var/log/chef/client.log'
+
 rackspace_sudo 'rack' do
   user 'rack'
   nopasswd true
 end
 
-admin_packages = %W[
+admin_packages = %w(
   sysstat
   dstat
   screen
@@ -47,7 +57,7 @@ admin_packages = %W[
   mtr
   zip
   lsof
-]
+)
 
 case node['platform_family']
 when 'debian'
@@ -68,5 +78,5 @@ file '/etc/profile.d/editor.sh' do
   owner 'root'
   group 'root'
   mode '755'
-  content %{export EDITOR="#{node['rackops_rolebook']['editor']['default']}"}
+  content %(export EDITOR="#{node['rackops_rolebook']['editor']['default']}")
 end

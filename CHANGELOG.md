@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 1.2.0
+* Add rackspace_cloudmonitoring as a dependency to enable standard checks
+
 ## 1.0.0
 * new and improved (for varying values of improved)
 * using more rackspace_blah cookbooks
