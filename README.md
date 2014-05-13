@@ -11,6 +11,7 @@ Requirements
 - depends "rackspace_ntp"
 - depends "rackspace_iptables"
 - depends "rackspace_cloudmonitoring"
+- depends "rackspace_openssh"
 
 Attributes
 -----------
