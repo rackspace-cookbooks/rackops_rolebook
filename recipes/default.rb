@@ -37,6 +37,10 @@ critical_recipes.each do | recipe |
 end
 
 node.default['rackspace_sudo']['config']['authorization']['sudo']['include_sudoers_d'] = true
+
+# Needed because chef_client set up logrotate only if this is set to something...
+node.default['chef-client']['log_file'] = '/var/log/chef/client.log'
+
 rackspace_sudo 'rack' do
   user 'rack'
   nopasswd true
