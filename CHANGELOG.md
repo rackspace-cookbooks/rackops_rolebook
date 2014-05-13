@@ -2,8 +2,8 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
-## 1.4.0 (https://github.com/rackops/rackops_rolebook/pull/14)
-* Add public_info Ohai plugin to populate public_info attributes
+## 1.4.0
+* Add public_info Ohai plugin to populate public_info attributes (https://github.com/rackops/rackops_rolebook/pull/14)
 
 ## 1.3.1
 * Add Openssh dependency (https://github.com/rackops/rackops_rolebook/pull/11)
