@@ -8,10 +8,11 @@
 #
 
 critical_recipes = %w(
+  rackops_rolebook::motd
   rackspace_user::rack_user
-  rackspace_motd
-  rackspace_ntp
-  rackspace_openssh
+  ntp
+  openssh
+  sudo
   rackops_rolebook::public_info
 )
 
@@ -38,12 +39,12 @@ critical_recipes.each do | recipe |
   include_recipe recipe
 end
 
-node.default['rackspace_sudo']['config']['authorization']['sudo']['include_sudoers_d'] = true
+node.default['authorization']['sudo']['include_sudoers_d'] = true
 
 # Needed because chef_client set up logrotate only if this is set to something...
 node.default['chef-client']['log_file'] = '/var/log/chef/client.log'
 
-rackspace_sudo 'rack' do
+sudo 'rack' do
   user 'rack'
   nopasswd true
 end
@@ -78,6 +79,6 @@ end
 file '/etc/profile.d/editor.sh' do
   owner 'root'
   group 'root'
-  mode '755'
+  mode 0755
   content %(export EDITOR="#{node['rackops_rolebook']['editor']['default']}")
 end
