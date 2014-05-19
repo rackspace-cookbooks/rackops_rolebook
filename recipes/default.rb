@@ -9,10 +9,10 @@
 
 critical_recipes = %w(
   rackops_rolebook::motd
-  rackspace_user::rack_user
+  sudo
+  rackops_rolebook::rack_user
   ntp
   openssh
-  sudo
   rackops_rolebook::public_info
 )
 
@@ -44,11 +44,6 @@ node.default['authorization']['sudo']['include_sudoers_d'] = true
 # Needed because chef_client set up logrotate only if this is set to something...
 node.default['chef-client']['log_file'] = '/var/log/chef/client.log'
 
-sudo 'rack' do
-  user 'rack'
-  nopasswd true
-end
-
 admin_packages = %w(
   sysstat
   dstat
@@ -65,6 +60,8 @@ case node['platform_family']
 when 'debian'
   admin_packages.push('vim')
   admin_packages.push('htop') # htop not available in cent/rhel w/o epel
+  node.override['apt']['compile_time_update'] = true
+  include_recipe 'apt'
 when 'rhel'
   admin_packages.push('vim-minimal')
 end

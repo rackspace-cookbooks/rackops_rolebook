@@ -7,10 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'motd'
+include_recipe 'motd-tail'
 
-motd 'rack-motd' do
-  cookbook 'rackops_rolebook'
-  source 'motd.erb'
-  color false
+motd_tail '/etc/motd' do
+  template_source 'motd.erb'
 end
