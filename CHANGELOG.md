@@ -2,6 +2,22 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 2.0.0
+* Deprecate the following cookbooks in favor of community cookbooks:
+  * rackspace_user
+  * rackspace_sudo
+  * rackspace_ntp
+  * rackspace_motd
+  * rackspace_openssh
+  * rackspace_apt
+  * rackspace_yum
+* Update versions of existing cookbooks
+* Use LWRP for 'rack' user from user cookbook
+* Use LWRP for 'rack' user from sudo cookbook for sudo access
+* Set apt to run at compile time to build an apt cache on boot (Debian-based systems)
+* Move motd template from rackspace_motd to this cookbook, using LWRP from 'motd-tail' cookbook to create
+* Move ntp setup from rackspace_ntp to this cookbook, with time servers set via wrapper attribute
+
 ## 1.4.0
 * Add public_info Ohai plugin to populate public_info attributes (https://github.com/rackops/rackops_rolebook/pull/14)
 
