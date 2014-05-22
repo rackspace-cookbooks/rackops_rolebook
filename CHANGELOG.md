@@ -3,7 +3,7 @@
 This file is used to list changes made in each version of rackops_rolebook.
 
 ## 2.0.0
-* Deprecate the following cookbooks in favor of community cookbooks:
+* Remove the following cookbooks in favor of community cookbooks:
   * rackspace_user
   * rackspace_sudo
   * rackspace_ntp
