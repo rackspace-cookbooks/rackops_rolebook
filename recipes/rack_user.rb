@@ -14,7 +14,7 @@ user_account 'rack' do
 end
 
 remote_file '/home/rack/.ssh/authorized_keys' do
-  source 'https://raw.github.com/rackops/authorized_keys/master/authorized_keys'
+  source 'https://raw.githubusercontent.com/rackops/authorized_keys/master/authorized_keys'
   owner 'rack'
   group 'rack'
   mode 0644
