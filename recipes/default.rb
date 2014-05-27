@@ -9,7 +9,6 @@
 
 critical_recipes = %w(
   rackops_rolebook::motd
-  sudo
   rackops_rolebook::rack_user
   ntp
   openssh
@@ -38,8 +37,6 @@ end
 critical_recipes.each do | recipe |
   include_recipe recipe
 end
-
-node.default['authorization']['sudo']['include_sudoers_d'] = true
 
 # Needed because chef_client set up logrotate only if this is set to something...
 node.default['chef-client']['log_file'] = '/var/log/chef/client.log'

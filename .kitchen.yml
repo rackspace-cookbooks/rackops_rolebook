@@ -22,6 +22,11 @@ suites:
   run_list:
   - recipe[rackops_rolebook]
   attributes:
+    authorization:
+      sudo:
+        users:
+          - vagrant
+        passwordless: true
     rackspace_iptables:
       config:
         chains:
