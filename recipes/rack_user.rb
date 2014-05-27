@@ -6,6 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
+node.set['authorization']['sudo']['include_sudoers_d'] = true
+
+include_recipe 'sudo'
 include_recipe 'user'
 
 user_account 'rack' do
