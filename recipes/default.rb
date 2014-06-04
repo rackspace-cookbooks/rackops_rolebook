@@ -70,9 +70,14 @@ admin_packages.each do | admin_package |
 end
 
 # Set the default editor based on attribute
-file '/etc/profile.d/editor.sh' do
+template 'editor-env-var' do
+  cookbook node['rackops_rolebook']['templates']['editor-env-var']
+  source 'editor.sh.erb'
+  path '/etc/profile.d/editor.sh'
   owner 'root'
   group 'root'
-  mode 0755
-  content %(export EDITOR="#{node['rackops_rolebook']['editor']['default']}")
+  mode '00755'
+  variables(
+    cookbook_name: cookbook_name
+  )
 end
