@@ -1,4 +1,3 @@
-
 # Sets editor for profile.d
 default['rackops_rolebook']['editor']['default'] = '/usr/bin/vim.basic'
 
