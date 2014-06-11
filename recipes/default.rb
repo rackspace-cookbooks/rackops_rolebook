@@ -20,9 +20,6 @@ critical_recipes.each do | recipe |
   include_recipe recipe
 end
 
-# Needed because chef_client set up logrotate only if this is set to something...
-node.default['chef-client']['log_file'] = '/var/log/chef/client.log'
-
 admin_packages = %w(
   sysstat
   dstat
