@@ -15,14 +15,6 @@ critical_recipes = %w(
   platformstack::default
 )
 
-# Only include chef-client in client mode.
-# This should allow for testing via solo
-unless Chef::Config[:solo] == true
-  critical_recipes.push('chef-client')
-  critical_recipes.push('chef-client::delete_validation')
-  critical_recipes.push('chef-client::config')
-end
-
 # Run critical recipes
 critical_recipes.each do | recipe |
   include_recipe recipe
