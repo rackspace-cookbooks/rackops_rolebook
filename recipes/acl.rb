@@ -6,8 +6,6 @@
 # Copyright 2014, Rackspace US, Inc.
 #
 
-include_recipe 'rackspace_iptables'
-
 # Rackspace Bastion access
 add_iptables_rule('INPUT', '-s 72.3.128.84/32 -j ACCEPT', 500, 'Bastion')
 add_iptables_rule('INPUT', '-s 69.20.0.1/32 -j ACCEPT', 501, 'Bastion')
