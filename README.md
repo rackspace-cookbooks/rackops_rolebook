@@ -8,10 +8,8 @@ Requirements
 - depends "rackspace_user"
 - depends "rackspace_motd"
 - depends "rackspace_sudo"
-- depends "rackspace_ntp"
 - depends "rackspace_iptables"
 - depends "rackspace_cloudmonitoring"
-- depends "rackspace_openssh"
 
 Attributes
 -----------

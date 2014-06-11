@@ -10,20 +10,10 @@
 critical_recipes = %w(
   rackops_rolebook::motd
   rackops_rolebook::rack_user
-  ntp
-  openssh
   rackops_rolebook::public_info
+  rackops_rolebook::acl
+  platformstack::default
 )
-
-if node['rackops_rolebook']['include_acl'] == true
-  critical_recipes.push('rackops_rolebook::acl')
-end
-
-if node['rackspace_cloudmonitoring']['standard_checks']['enabled'] == true
-  critical_recipes.push('rackspace_cloudmonitoring')
-  critical_recipes.push('rackops_rolebook::monitoring_checks')
-  critical_recipes.push('rackspace_cloudmonitoring::monitors')
-end
 
 # Only include chef-client in client mode.
 # This should allow for testing via solo
