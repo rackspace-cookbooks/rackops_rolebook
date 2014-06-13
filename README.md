@@ -1,13 +1,16 @@
 rackops_rolebook Cookbook
 =========================
-This "rolebook" is a replacement for a traditional base role. It includes recipes like a role but is structured like a cookbook.
+This "rolebook" is a set of recipes that enable Rackspace to support DevOps Automation customers.  Should a customer no longer want Rackspace support, we are able to remove this "rolebook" without impacting any other automation the customer may be using.
 
 Requirements
 ------------
+- depends "apt"
 - depends "user"
 - depends "motd-tail"
 - depends "sudo"
 - depends "rackspace_iptables"
+- depends "ohai"
+- depends "platformstack"
 
 Attributes
 -----------
@@ -17,6 +20,9 @@ Recipes
 -------
 `default.rb` - This recipe includes all the recipes from the required core cookbooks. It will include chef-client recipes if we are *not* running in chef_solo mode. It adds the `rack` user to the sudo group and installs a bunch of handy applications.
 `acl.rb` - This recipe will the standard rackspace IPtables allows.
+`motd.rb` - This recipe sets the motd useful to Rackspace support.
+`public_info.rb` - This recipe sets a tag equal to the public IP detected on an external call.  This will assist Rackspace support in finding the correct IP to connect to via SSH
+`rack_user.rb` - This recipe sets up the rack user, and pulls in the authorized_keys file with the public keys of various Rackspace support staff so that support can access the server for troubleshooting and remediation.
 
 Usage
 -----
@@ -37,3 +43,4 @@ License and Authors
 -------------------
 Author: ryan.richard@rackspace.com
 Author: matt.thode@rackspace.com
+Author: jason.nelson@rackspace.com

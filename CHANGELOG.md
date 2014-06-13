@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.0.2
+* Fixes authorized_keys is recreated on every run
+  * ruby block pulls ssh keys from github repo, passes them as array to user_account resource called in ruby_block
+
 ## 3.0.1
 * Fix EDITOR environment variable in RHEL
 * Add strace to list of admin packages
