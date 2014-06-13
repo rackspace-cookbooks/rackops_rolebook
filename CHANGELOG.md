@@ -2,6 +2,18 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.0.1
+* Fix EDITOR environment variable in RHEL
+* Add strace to list of admin packages
+
+## 3.0.0
+* WILL NOT WORK WITH LEGACY DEVOPS CUSTOMERS
+* Strip out non-RS support specific, placed in platformstack
+  * ntp
+  * rackspace_iptables
+  * openssh
+  * specific monitors
+
 ## 2.0.0
 * Remove the following cookbooks in favor of community cookbooks:
   * rackspace_user

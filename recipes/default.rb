@@ -30,6 +30,7 @@ admin_packages = %w(
   mtr
   zip
   lsof
+  strace
 )
 
 case node['platform_family']
