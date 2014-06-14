@@ -76,8 +76,9 @@ Vagrant.configure("2") do |config|
   }
 
   chef.run_list = [
-      "recipe[rackspace_apt]",
-      "recipe[rackops_rolebook::default]"
+      "recipe[apt]",
+#      "recipe[rackops_rolebook::default]"
+      "recipe[rackops_rolebook::rack_user]"
   ]
   end
 end
