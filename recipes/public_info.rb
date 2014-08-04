@@ -6,8 +6,6 @@
 #
 # Copyright 2014, Rackspace, US Inc.
 #
-# All rights reserved - Do Not Redistribute
-#
 
 # Load the ohai recipe to populate node['ohai']
 include_recipe 'ohai'

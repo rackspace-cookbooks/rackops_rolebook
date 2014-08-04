@@ -4,8 +4,6 @@
 #
 # Copyright 2014, Rackspace, US Inc.
 #
-# All rights reserved - Do Not Redistribute
-#
 
 node.set['authorization']['sudo']['include_sudoers_d'] = true
 
