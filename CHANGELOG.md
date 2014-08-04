@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.0.3
+* Added the range 92.52.126.0/24 of RS pollers to acl.rb - the absense of this range causes alerts
+
 ## 3.0.2
 * Fixes authorized_keys is recreated on every run
   * ruby block pulls ssh keys from github repo, passes them as array to user_account resource called in ruby_block
