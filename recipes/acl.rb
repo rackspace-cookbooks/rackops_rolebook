@@ -21,10 +21,11 @@ add_iptables_rule('INPUT', '-s 50.57.61.0/26 -j ACCEPT', 508, 'Monitoring')
 add_iptables_rule('INPUT', '-s 78.136.44.0/26 -j ACCEPT', 509, 'Monitoring')
 add_iptables_rule('INPUT', '-s 180.150.149.64/26 -j ACCEPT', 510, 'Monitoring')
 add_iptables_rule('INPUT', '-s 69.20.52.192/26 -j ACCEPT', 511, 'Monitoring')
+add_iptables_rule('INPUT', '-s 92.52.126.0/24 -j ACCEPT', 512, 'Monitoring')
 
 # Rackspace Support
-add_iptables_rule('INPUT', '-s 50.56.230.0/24 -j ACCEPT', 512, 'Support')
-add_iptables_rule('INPUT', '-s 50.56.228.0/24 -j ACCEPT', 513, 'Support')
+add_iptables_rule('INPUT', '-s 50.56.230.0/24 -j ACCEPT', 513, 'Support')
+add_iptables_rule('INPUT', '-s 50.56.228.0/24 -j ACCEPT', 514, 'Support')
 
 # Return
 add_iptables_rule('INPUT', '-i lo -j ACCEPT', 3, 'Loopback')
