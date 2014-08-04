@@ -4,8 +4,6 @@
 #
 # Copyright 2014, Rackspace, US Inc.
 #
-# All rights reserved - Do Not Redistribute
-#
 
 critical_recipes = %w(
   rackops_rolebook::motd
