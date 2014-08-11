@@ -29,5 +29,5 @@ add_iptables_rule('INPUT', '-s 50.56.228.0/24 -j ACCEPT', 514, 'Support')
 
 # Return
 add_iptables_rule('INPUT', '-i lo -j ACCEPT', 3, 'Loopback')
-add_iptables_rule('INPUT', '-m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT', 2, 'Allow establihsed')
+add_iptables_rule('INPUT', '-m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT', 2, 'Allow established')
 add_iptables_rule('INPUT', '-s 0.0.0.0/0 -j REJECT', 1, 'Drop not allowed')
