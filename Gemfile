@@ -1,22 +1,39 @@
+# A sample Gemfile
 source 'https://rubygems.org'
 
-gem 'berkshelf', '~> 2.0'
-
-group :testing do
-  gem 'chefspec',   '~> 3.2'
-  gem 'foodcritic', '~> 3.0'
-  gem 'thor',       '~> 0.18'
-  gem 'strainer',   '~> 3.3'
-  gem 'chef',       '~> 11.8'
-  gem 'rspec',      '~> 2.14'
-  gem 'rubocop',    '~> 0.18.0'
-  gem 'rake',       '~> 10.1'
+group :lint do
+  gem 'foodcritic'
+  gem 'rubocop'
 end
 
-group :integration do
-  gem 'test-kitchen', '~> 1.1'
-  gem 'kitchen-vagrant', '~> 0.14'
-  gem 'kitchen-rackspace', '>= 0.4.0'
-  gem 'serverspec', '~> 0.15.1'
-  gem 'vagrant-wrapper', '~> 1.2'
+group :unit do
+  gem 'berkshelf', '>= 3.0'
+  gem 'chefspec'
+  gem 'chef-sugar'
+end
+
+group :kitchen_common do
+  gem 'test-kitchen'
+end
+
+group :kitchen_vagrant do
+  gem 'kitchen-vagrant'
+end
+
+group :kithcen_rackspace do
+  gem 'kitchen-rackspace'
+end
+
+group :development do
+  gem 'growl'
+  gem 'serverspec'
+  gem 'rb-fsevent'
+  gem 'guard'
+  gem 'guard-kitchen'
+  gem 'guard-foodcritic'
+  gem 'guard-rubocop'
+  gem 'guard-rspec'
+  gem 'fauxhai'
+  gem 'pry-nav'
+  gem 'vagrant-wrapper'
 end
