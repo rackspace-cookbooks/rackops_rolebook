@@ -41,3 +41,9 @@ suites:
             '-s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT':
               weight: 1000
               comment: 'vagrant ssh'
+
+- name: ohai
+  run_list:
+  - recipe[apt]
+  - recipe[rackops_rolebook::ohai_plugins]
+  attributes: {}

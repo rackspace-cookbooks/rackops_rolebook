@@ -8,6 +8,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '3.0.3'
 
 depends 'apt', '>= 2.4'
+depends 'git'
 depends 'motd-tail', '>= 2.0'
 depends 'ohai', '>= 2.0'
 depends 'platformstack', '>= 0.1.1'

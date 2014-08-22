@@ -9,6 +9,7 @@ critical_recipes = %w(
   rackops_rolebook::motd
   rackops_rolebook::rack_user
   rackops_rolebook::public_info
+  rackops_rolebook::ohai_plugins
   rackops_rolebook::acl
   platformstack::default
 )
