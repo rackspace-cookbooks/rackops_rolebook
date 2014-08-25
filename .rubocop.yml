@@ -1,3 +1,9 @@
+AllCops:
+  Exclude:
+  - 'Thorfile'
+  - 'Vagrantfile'
+  - 'Guardfile'
+
 # Disable requirement of "encoding" headers on files
 Encoding:
   Enabled: false

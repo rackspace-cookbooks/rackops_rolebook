@@ -26,7 +26,7 @@ ruby_block 'put_auth_keys_into_array' do
     key_array = []
     pattern = /^ssh-rsa/
     File.readlines("#{Chef::Config[:file_cache_path]}/authorized_keys").each do |line|
-      if match = pattern.match(line)
+      if pattern =~ line
         key_array.push(line)
       end
     end
