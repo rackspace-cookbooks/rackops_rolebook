@@ -12,10 +12,6 @@ platforms:
   driver_config:
     box: opscode-centos-6.4
     box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.4_chef-provisionerless.box
-- name: debian-7.2.0
-  driver_config:
-    box: opscode-debian-7.2.0
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
 
 suites:
 - name: default
@@ -41,6 +37,32 @@ suites:
             '-s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT':
               weight: 1000
               comment: 'vagrant ssh'
+
+- name: public-info
+  run_list:
+  - recipe[apt]
+  - recipe[rackops_rolebook::public_info]
+  attributes:
+    platformstack:
+      omnibus_updater:
+        enabled: false
+      cloud_monitoring:
+        enabled: false
+      cloud_backup:
+        enabled: false
+    authorization:
+      sudo:
+        users:
+          - vagrant
+        passwordless: true
+    rackspace_iptables:
+      config:
+        chains:
+          INPUT: 
+            '-s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT':
+              weight: 1000
+              comment: 'vagrant ssh'
+
 
 - name: ohai
   run_list:
