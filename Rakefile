@@ -25,7 +25,7 @@ require 'bundler/setup'
 namespace :style do
   require 'rubocop/rake_task'
   desc 'Run Ruby style checks'
-  Rubocop::RakeTask.new(:ruby)
+  RuboCop::RakeTask.new(:ruby)
 
   require 'foodcritic'
   desc 'Run Chef style checks'
@@ -39,7 +39,9 @@ task style: %w(style:chef style:ruby)
 
 require 'rspec/core/rake_task'
 desc 'Run RSpec and ChefSpec unit tests'
-RSpec::Core::RakeTask.new(:unit)
+RSpec::Core::RakeTask.new(:unit) do |t|
+  t.rspec_opts = 'test/unit'
+end
 
 desc 'Run style and unit tests'
 task style_unit: %w(style:chef style:ruby unit)
