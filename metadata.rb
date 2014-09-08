@@ -5,7 +5,7 @@ license          'All rights reserved'
 description      'Installs/Configures rackops_rolebook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
-version          '3.1.2'
+version          '3.1.3'
 
 depends 'apt', '>= 2.4'
 depends 'git'

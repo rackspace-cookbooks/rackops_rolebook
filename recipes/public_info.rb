@@ -17,28 +17,25 @@ if node['ohai']['plugin_path'].nil?
 end
 
 # Ensure the plugin directory exists
-plugin_directory = directory node['ohai']['plugin_path'] do
+directory node['ohai']['plugin_path'] do
   owner 'root'
   group 'root'
   mode  '0755'
   recursive true
-end
+  action 'nothing'
+end.run_action('create')
 
-plugin_install = cookbook_file "#{node['ohai']['plugin_path']}/public_info.rb" do
-  action :create
+cookbook_file "#{node['ohai']['plugin_path']}/public_info.rb" do
   owner 'root'
   group 'root'
   mode  '0644'
-end
+  action 'nothing'
+end.run_action('create')
 
-reload_ohai = ohai 'reload' do
-  action :nothing
-end
-
-# Run during compile, not convergance
-plugin_directory.run_action(:create)
-plugin_install.run_action(:create)
-reload_ohai.run_action(:reload)
+ohai 'reload_pubinfo' do
+  plugin 'public_info'
+  action 'nothing'
+end.run_action('reload')
 
 # Stop the run if the IP is invalid, assume failure here is preferable to running with invalid data
 # This check is also important for testing: if the plugin fails to load and operate this exception will
