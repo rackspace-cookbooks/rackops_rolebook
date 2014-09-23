@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.1.4
+# Added public_info resilience
+
 ## 3.0.3
 * Added the range 92.52.126.0/24 of RS pollers to acl.rb - the absense of this range causes alerts
 
