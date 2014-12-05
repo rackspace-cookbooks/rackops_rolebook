@@ -1,71 +1,61 @@
 ---
-driver_plugin: vagrant
+################################################################################
+# Any local customizations should be placed inside the .kitchen.local.yml, which
+# will not be checked in or overwritten. You may also use ~/.kitchen/config.yml
+# or environment variables like VAGRANT_DEFAULT_PROVIDER. Anything in those will
+# take precedence over anything set in `.kitchen.yml`.
+################################################################################
+driver:
+  name: vagrant # provide a default test-kitchen driver, vagrant
+
 driver_config:
   require_chef_omnibus: latest
 
+provisioner:
+  name: chef_zero
+  client_rb:
+    environment: _default
+  attributes:
+    openssh:
+      server:
+        password_authentication: 'yes'
+        permit_root_login: 'yes'
+    cloud:
+      public_ipv4: '127.0.0.1'
+    authorization:
+      sudo:
+        users: ['vagrant']
+        passwordless: true
+    platformstack:
+      cloud_backup:
+        enabled: false
+      cloud_monitoring:
+        enabled: false
+      omnibus_updater:
+        enabled: false
+      iptables:
+        allow_ssh_from_world: true
+    rackspace:
+      cloud_credentials:
+        username: 'racker'
+        api_key: 'sekrit'
+
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-12.04_chef-provisionerless.box
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.4_chef-provisionerless.box
+  - name: ubuntu-14.04
+    run_list:
+    - recipe[apt]
+  - name: ubuntu-12.04
+    run_list:
+    - recipe[apt]
+  - name: centos-6.5
+    run_list:
+    - recipe[yum]
 
 suites:
-- name: default
-  run_list:
-  - recipe[rackops_rolebook]
-  attributes:
-    platformstack:
-      omnibus_updater:
-        enabled: false
-      cloud_monitoring:
-        enabled: false
-      cloud_backup:
-        enabled: false
-    authorization:
-      sudo:
-        users:
-          - vagrant
-        passwordless: true
-    rackspace_iptables:
-      config:
-        chains:
-          INPUT: 
-            '-s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT':
-              weight: 1000
-              comment: 'vagrant ssh'
+  - name: default
+    run_list: recipe[rackops_rolebook]
+    attributes:
+      foo: 'bar'
 
-- name: public-info
-  run_list:
-  - recipe[apt]
-  - recipe[rackops_rolebook::public_info]
-  attributes:
-    platformstack:
-      omnibus_updater:
-        enabled: false
-      cloud_monitoring:
-        enabled: false
-      cloud_backup:
-        enabled: false
-    authorization:
-      sudo:
-        users:
-          - vagrant
-        passwordless: true
-    rackspace_iptables:
-      config:
-        chains:
-          INPUT: 
-            '-s 0.0.0.0/0 -p tcp --dport 22 -j ACCEPT':
-              weight: 1000
-              comment: 'vagrant ssh'
-
-
-- name: ohai
-  run_list:
-  - recipe[apt]
-  - recipe[rackops_rolebook::ohai_plugins]
-  attributes: {}
+  - name: public_info
+    run_list: recipe[rackops_rolebook::public_info]
