@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.1.5
+# Ensure we install rest-client gem since public_info requires it
+
 ## 3.1.4
 # Added public_info resilience
 
