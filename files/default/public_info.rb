@@ -16,12 +16,12 @@
 # limitations under the License.
 
 require 'json'
-require 'rest-client'
 
 Ohai.plugin(:Publicinfo) do
   provides 'public_info'
 
   collect_data(:linux) do
+    require 'rest-client'
     url = 'http://whoami.rackops.org/api'
     # Handle errors and no response for whoami.rackops.org
     begin
