@@ -9,7 +9,7 @@
 include_recipe 'chef-sugar'
 
 # ensure rest-client gem is available
-rest_client_gem = chef_gem 'rest-client' do
+chef_gem 'rest-client' do
   action :nothing
 end.run_action('install')
 
