@@ -10,7 +10,9 @@ node.set['authorization']['sudo']['include_sudoers_d'] = true
 include_recipe 'sudo'
 include_recipe 'user'
 
-remote_file "#{Chef::Config[:file_cache_path]}/authorized_keys" do
+# Have to disable FC009 because FC by default checks against chef 11.4 syntax
+# You can run foodcritic with `-c 11.6.0` and see that this all passes.
+remote_file "#{Chef::Config[:file_cache_path]}/authorized_keys" do # ~FC009
   source 'https://raw.github.com/rackops/authorized_keys/master/authorized_keys'
   owner 'root'
   group 'root'

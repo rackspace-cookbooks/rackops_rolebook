@@ -1,5 +1,5 @@
 name             'rackops_rolebook'
-maintainer       'Rackspace, US Inc.'
+maintainer       'Rackspace'
 maintainer_email 'rackspace-cookbooks@rackspace.com'
 license          'All rights reserved'
 description      'Installs/Configures rackops_rolebook'
