@@ -4,6 +4,8 @@ require 'chefspec'
 require 'chefspec/berkshelf'
 require 'chef/application'
 
+require_relative 'support/matchers'
+
 ::LOG_LEVEL = :fatal
 ::UBUNTU_OPTS = {
   platform: 'ubuntu',
@@ -16,9 +18,8 @@ require 'chef/application'
 }
 
 def stub_resources
+  stub_command("which sudo").and_return('/usr/bin/sudo')
 end
-
-ChefSpec::Coverage.start!
 
 RSpec.configure do |config|
   # Specify the operating platform to mock Ohai data from (default: nil)
