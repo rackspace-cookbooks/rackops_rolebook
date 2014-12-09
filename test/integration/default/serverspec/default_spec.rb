@@ -29,7 +29,16 @@ admin_packages.each do |pkg|
 end
 
 describe file('/etc/profile.d/editor.sh') do
-  its(:content) { should match(/vim/) }
+  case os[:family]  # redHat, ubuntu, debian and so on
+  when 'redhat'
+    editor = 'vi'
+  when 'ubuntu'
+    editor = 'vim'
+  else
+    editor = 'fail'
+  end
+
+  its(:content) { should match(editor) }
 end
 
 # rackops_rolebook::motd
