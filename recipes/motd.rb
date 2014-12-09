@@ -7,6 +7,6 @@
 
 include_recipe 'motd-tail'
 
-motd_tail '/etc/motd' do
+motd_tail '/etc/motd.tail' do
   template_source 'motd.erb'
 end

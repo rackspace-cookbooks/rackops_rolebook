@@ -18,7 +18,7 @@ require_relative 'support/matchers'
 }
 
 def stub_resources
-  stub_command("which sudo").and_return('/usr/bin/sudo')
+  stub_command('which sudo').and_return('/usr/bin/sudo')
 end
 
 RSpec.configure do |config|

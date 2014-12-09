@@ -44,5 +44,5 @@ describe 'rackops_rolebook::default' do
       expect(chef_run).to install_package(pkg)
     end
   end
-  
+
 end

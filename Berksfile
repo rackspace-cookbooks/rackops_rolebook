@@ -6,7 +6,7 @@ group :integration do
   cookbook 'yum'
 end
 
-cookbook 'kibana', '~> 1.3', git:'git@github.com:lusis/chef-kibana.git'
+cookbook 'kibana', '~> 1.3', git: 'git@github.com:lusis/chef-kibana.git'
 
 # until https://github.com/elasticsearch/cookbook-elasticsearch/pull/230
-cookbook 'elasticsearch', '~> 0.3', git:'git@github.com:racker/cookbook-elasticsearch.git'
+cookbook 'elasticsearch', '~> 0.3', git: 'git@github.com:racker/cookbook-elasticsearch.git'
