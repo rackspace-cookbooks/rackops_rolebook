@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.2.0
+* Bump for new version
+
 ## 3.1.5
 # Ensure we install rest-client gem since public_info requires it
 
