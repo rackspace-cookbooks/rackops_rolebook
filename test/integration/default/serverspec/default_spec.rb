@@ -14,8 +14,6 @@ admin_packages = %w(
   strace
 )
 
-require 'pp'
-pp os
 case os[:family]  # redHat, ubuntu, debian and so on
 when 'redhat'
   admin_packages << 'vim-minimal'
@@ -62,10 +60,10 @@ describe command('which git') do
   its(:stdout) { should match(%r{/usr/bin/git}) }
 end
 describe file('/etc/chef/ohai_plugins/filesystem.rb') do # arbitrary choice
-  it { should be_file }
+  its(:content) { should match(/FilesystemInodes/) }
 end
 describe file('/etc/chef/ohai_plugins/public_info.rb') do
-  it { should be_file }
+  its(:content) { should match(/Publicinfo/) }
 end
 describe command('ohai -d /etc/chef/ohai_plugins/') do
   its(:stdout) { should match(/"public_info":/) }

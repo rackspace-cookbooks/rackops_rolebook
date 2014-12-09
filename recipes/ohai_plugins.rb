@@ -31,12 +31,19 @@ git "#{Chef::Config['file_cache_path']}/ohai_plugins" do
   action :sync
 end
 
-Dir["#{Chef::Config['file_cache_path']}/ohai_plugins/plugins/*"].each do |plugin|
-  remote_file "#{node['ohai']['plugin_path']}/#{File.basename(plugin)}" do
-    source "file://#{plugin}"
-    owner 'root'
-    group 'root'
-    mode '0644'
+# this will require two converges unless we wrap it in a ruby block since the
+# call to Dir[] runs before the git resource above
+ruby_block 'copy plugin files to ohai from git sync in file_cache_path' do
+  block do
+    Dir["#{Chef::Config['file_cache_path']}/ohai_plugins/plugins/*"].each do |plugin|
+      f = Chef::Resource::RemoteFile.new("#{node['ohai']['plugin_path']}/#{File.basename(plugin)}", run_context)
+      f.source "file://#{plugin}"
+      f.owner 'root'
+      f.group 'root'
+      f.mode '0644'
+
+      f.run_action(:create)
+    end
   end
 end
 

@@ -13,7 +13,6 @@ describe 'rackops_rolebook::ohai_plugins' do
   end
 
   it 'does a git sync' do
-    pp Chef::Config
     expect(chef_run).to git_sync("#{Chef::Config[:file_cache_path]}/ohai_plugins")
   end
 
