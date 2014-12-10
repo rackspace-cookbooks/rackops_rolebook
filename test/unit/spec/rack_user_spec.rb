@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe 'rackops_rolebook::rack_user' do
   let(:chef_run) do
-    ChefSpec::SoloRunner.new(step_into: ['put_auth_keys_into_array']) do |node|
+    ChefSpec::SoloRunner.new do |node|
       node.set['cpu']['total'] = 8
       node.set['public_info']['remote_ip'] = '127.0.0.1'
       stub_resources
