@@ -3,7 +3,9 @@
 This file is used to list changes made in each version of rackops_rolebook.
 
 ## 3.2.0
-* Bump for new version
+* Add unit and integration tests, extravaganza
+* Fixup unit tests to run and pass
+* Freshen dependencies to fix chef 12 convergence
 
 ## 3.1.5
 # Ensure we install rest-client gem since public_info requires it
