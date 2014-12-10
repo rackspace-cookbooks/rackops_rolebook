@@ -2,6 +2,9 @@
 
 This file is used to list changes made in each version of rackops_rolebook.
 
+## 3.2.1
+* Bump for dev
+
 ## 3.2.0
 * Add unit and integration tests, extravaganza
 * Fixup unit tests to run and pass
