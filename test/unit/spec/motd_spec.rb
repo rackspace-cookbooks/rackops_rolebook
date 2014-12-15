@@ -15,5 +15,4 @@ describe 'rackops_rolebook::motd' do
   it 'create motd_tail resource' do
     expect(chef_run).to create_motd_tail('/etc/motd.tail')
   end
-
 end

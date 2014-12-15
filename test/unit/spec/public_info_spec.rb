@@ -23,5 +23,4 @@ describe 'rackops_rolebook::public_info' do
   it 'reloads ohai' do
     expect(chef_run).to reload_ohai('reload_pubinfo')
   end
-
 end

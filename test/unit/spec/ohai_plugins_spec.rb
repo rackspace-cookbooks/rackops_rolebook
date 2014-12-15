@@ -19,5 +19,4 @@ describe 'rackops_rolebook::ohai_plugins' do
   it 'reloads ohai' do
     expect(chef_run).to reload_ohai('reload')
   end
-
 end
