@@ -15,7 +15,7 @@ critical_recipes = %w(
 )
 
 # Run critical recipes
-critical_recipes.each do | recipe |
+critical_recipes.each do |recipe|
   include_recipe recipe
 end
 
@@ -42,7 +42,7 @@ when 'rhel'
   admin_packages.push('vim-minimal')
 end
 
-admin_packages.each do | admin_package |
+admin_packages.each do |admin_package|
   package admin_package do
     action :install
   end
