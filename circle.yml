@@ -1,6 +1,6 @@
 machine:
   ruby:
-    version: 2.1.5
+    version: 2.2.3
   environment:
     KITCHEN_LOCAL_YAML: .kitchen.cloud.yml
 
@@ -8,10 +8,10 @@ dependencies:
   cache_directories:
     - "~/bundle"
   pre:
-    - ssh-keygen -y -f ~/.ssh/build_key.rsa > ~/.ssh/id_rsa.pub
+    - ssh-keygen -f ~/.ssh/id_rsa -q -N ""
   override:
     - bundle install --path=~/bundle --jobs=4 --retry=3:
-        timeout: 600
+        timeout: 1200
 
 test:
   override:

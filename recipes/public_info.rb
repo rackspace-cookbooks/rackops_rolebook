@@ -19,7 +19,7 @@ include_recipe 'ohai'
 # Fail in a slightly more descriptive manner than the directory block below
 #  if the plugin directory is unset.
 if node['ohai'] && node['ohai']['plugin_path'].nil?
-  fail 'ERROR: Ohai plugin path not set'
+  raise 'ERROR: Ohai plugin path not set'
 end
 
 # Ensure the plugin directory exists
@@ -47,7 +47,7 @@ end.run_action(:reload)
 # This check is also important for testing: if the plugin fails to load and operate this exception will
 #  halt convergance breaking Kitchen runs.
 unless node.deep_fetch('public_info', 'remote_ip') =~ /[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/
-  fail "ERROR: Unable to determine server remote IP. (Got \"#{node['public_info']['remote_ip']}\") Halting to avoid use of bad data."
+  raise "ERROR: Unable to determine server remote IP. (Got \"#{node['public_info']['remote_ip']}\") Halting to avoid use of bad data."
 end
 
 # Assign the external_ip tag to the node if node['public_info']['remote_ip'] looks like an IP.

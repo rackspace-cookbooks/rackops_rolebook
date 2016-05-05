@@ -3,6 +3,8 @@ maintainer       'Rackspace'
 maintainer_email 'rackspace-cookbooks@rackspace.com'
 license          'All rights reserved'
 description      'Installs/Configures rackops_rolebook'
+source_url 'https://github.com/rackspace-cookbooks/rackops_rolebook' if respond_to?(:source_url)
+issues_url 'https://github.com/rackspace-cookbooks/rackops_rolebook/issues' if respond_to?(:issues_url)
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
 version          '3.2.1'
